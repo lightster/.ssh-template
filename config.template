@@ -1,4 +1,4 @@
 Host *.example.com
-  IdentityFile ~/.ssh/id_rsa{{HOSTNAME}}
+  IdentityFile ~/.ssh/id_rsa{{KEY_HOSTNAME}}
   Compression yes
 
