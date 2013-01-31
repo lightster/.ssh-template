@@ -1,0 +1,27 @@
+#!/bin/sh
+
+cd ~/.ssh
+
+git pull
+
+if [ -f config.hostname ] ; then
+	CUSTOM_HOSTNAME=`cat config.hostname`
+else
+	CUSTOM_HOSTNAME=`hostname -s`
+	echo $CUSTOM_HOSTNAME > config.hostname
+fi
+
+if [ "$CUSTOM_HOSTNAME" != "" ] ; then
+	KEY_HOSTNAME=".${CUSTOM_HOSTNAME}"
+else
+	KEY_HOSTNAME=""
+fi
+
+cat config.template \
+	| sed "s/{{CUSTOM_HOSTNAME}}/${CUSTOM_HOSTNAME}/g" \
+	| sed "s/{{KEY_HOSTNAME}}/${KEY_HOSTNAME}/g" \
+	> config
+
+cat *.pub > authorized_keys
+chmod 0600 config* *.pub authorized_keys
+chmod 0700 .

@@ -1,0 +1,4 @@
+Host *.example.com
+  IdentityFile ~/.ssh/id_rsa{{HOSTNAME}}
+  Compression yes
+
