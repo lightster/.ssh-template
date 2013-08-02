@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ~/.ssh
+cd $(dirname $0)/..
 
 git pull
 
@@ -17,7 +17,7 @@ else
 	KEY_HOSTNAME=""
 fi
 
-cat config.template \
+cat template/config \
 	| sed "s/{{CUSTOM_HOSTNAME}}/${CUSTOM_HOSTNAME}/g" \
 	| sed "s/{{KEY_HOSTNAME}}/${KEY_HOSTNAME}/g" \
 	> config
