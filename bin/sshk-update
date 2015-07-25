@@ -2,7 +2,9 @@
 
 cd $(dirname $0)/..
 
-git pull
+if [ -d .git ] ; then
+	git pull
+fi
 
 if [ -f config.hostname ] ; then
 	CUSTOM_HOSTNAME=`cat config.hostname`
