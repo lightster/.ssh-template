@@ -2,6 +2,12 @@
 
 cd $(dirname $0)/..
 
+if [ -d private/.git ] ; then 
+	cd private
+	git pull
+	cd -
+fi
+
 if [ -d .git ] ; then
 	git pull
 fi
