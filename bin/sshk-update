@@ -19,10 +19,12 @@ else
 	KEY_HOSTNAME=""
 fi
 
-cat template/config \
-	| sed "s/{{CUSTOM_HOSTNAME}}/${CUSTOM_HOSTNAME}/g" \
-	| sed "s/{{KEY_HOSTNAME}}/${KEY_HOSTNAME}/g" \
-	> config
+if [ -e template/config ] ; then
+	cat template/config \
+		| sed "s/{{CUSTOM_HOSTNAME}}/${CUSTOM_HOSTNAME}/g" \
+		| sed "s/{{KEY_HOSTNAME}}/${KEY_HOSTNAME}/g" \
+		> config
+fi
 
 cat *.pub > authorized_keys
 chmod 0600 config* *.pub authorized_keys
